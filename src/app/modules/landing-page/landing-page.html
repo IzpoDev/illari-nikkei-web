@@ -1,68 +1,188 @@
 <header class="header" [class.header--visible]="isNavVisible">
-  <div class="header__logo">
-    <img src="assets/logo-hero-illari-nikkei-removebg-preview.png" alt="Illari Nikkei Logo">
+  <div class="header__logo" (click)="scrollTo('hero')" style="cursor: pointer;">
+    <img src="assets/logo-illari-nikkei-removebg-preview.png" alt="Illari Nikkei Logo">
   </div>
   <nav class="header__nav">
-    <a href="#reservas">Reservas</a>
-    <a href="#about">Sobre el chef</a>
-    <a href="#menu">Carta</a>
-    <a href="#location">Ubicanos</a>
+    <a (click)="scrollTo('reservas')" style="cursor: pointer;">Reservas</a>
+    <a (click)="scrollTo('chef')" style="cursor: pointer;">Sobre el chef</a>
+    <a (click)="scrollTo('menu')" style="cursor: pointer;">Carta</a>
+    <a (click)="scrollTo('location')" style="cursor: pointer;">Ubicanos</a>
   </nav>
 </header>
 
-<section class="hero">
+<section id="hero" class="hero">
   <div class="hero__content">
     <div class="hero__main-logo" role="img" aria-label="Illari Nikkei Logo"></div>
     <div class="hero__actions">
-      <button class="hero__btn">Reservas</button>
-      <button class="hero__btn">Sobre el chef</button>
-      <button class="hero__btn">Carta</button>
-      <button class="hero__btn">Ubicanos</button>
+      <button class="hero__btn" (click)="scrollTo('reservas')">Reservas</button>
+      <button class="hero__btn" (click)="scrollTo('chef')">Sobre el chef</button>
+      <button class="hero__btn" (click)="scrollTo('menu')">Carta</button>
+      <button class="hero__btn" (click)="scrollTo('location')">Ubicanos</button>
     </div>
   </div>
 </section>
 
-<section id="about" class="about">
+<section id="about" class="about" [class.about--visible]="isAboutVisible">
   <div class="about__text">
-    <h2 class="about__title">NUESTRA ESENCIA</h2>
-    <p>La combinación perfecta entre la tradición milenaria de Japón y la vibrante pasión de los sabores peruanos.</p>
-    <blockquote class="about__quote">"Donde el sol naciente abraza los Andes"</blockquote>
+    <h2 class="about__title">NUESTRA HERENCIA</h2>
+    <h3 class="about__subtitle">Quiénes Somos</h3>
+    <p>Illari Nikkei nace de la pasión por la armonía entre dos culturas gastronómicas legendarias. Nuestro nombre evoca el amanecer, simbolizando un nuevo despertar en la cocina fusión.</p>
+    <p>Honramos el legado de la migración japonesa en el Perú, transformando ingredientes locales con técnicas ancestrales niponas para crear una propuesta audaz, elegante y profundamente auténtica.</p>
+    <hr class="about__divider">
+    <blockquote class="about__quote">"Donde el sol naciente abraza los Andes."</blockquote>
   </div>
   <div class="about__visual">
-    <img src="" alt="Plated Makis" class="about__image">
+    <div class="about__image-container">
+      <img src="assets/bg-illari-nikkei.png" alt="Makis" class="about__image">
+    </div>
+  </div>
+</section>
+
+<section id="chef" class="chef" [class.chef--visible]="isChefVisible">
+  <div class="chef__visual">
+    <div class="chef__image-container">
+      <img src="assets/bg-illari-nikkei.png" alt="Chef Illari Nikkei" class="chef__image">
+    </div>
+  </div>
+  <div class="chef__text">
+    <h2 class="chef__title">EL MAESTRO DETRÁS DEL FUEGO</h2>
+    <h3 class="chef__subtitle">Visión y Maestría</h3>
+    <p>Nuestra cocina es un puente entre dos mundos: la precisión milenaria del Japón y la vibrante biodiversidad del Perú. Cada plato es una narrativa de migración, respeto y evolución.</p>
+    <p>El Chef fusiona técnicas ancestrales de corte con la potencia aromática de los ajíes peruanos, creando una experiencia sensorial que desafía lo convencional.</p>
+    <hr class="chef__divider">
+    <div class="chef__stats">
+      <div class="chef__stat-item">
+        <span class="chef__stat-number">15+</span>
+        <span class="chef__stat-label">AÑOS DE TRAYECTORIA</span>
+      </div>
+      <div class="chef__stat-item">
+        <span class="chef__stat-number">Nikkei</span>
+        <span class="chef__stat-label">PURA ESENCIA</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="menu" class="menu">
-  <h2 class="menu__title">SELECCIÓN DE AUTOR</h2>
-  <div class="menu__grid">
-    <div class="menu__item" *ngFor="let item of menuItems">
-      <img [src]="item.imgUrl" [alt]="item.title" class="menu__img">
-      <h3 class="menu__item-title">{{ item.title }}</h3>
-      <p class="menu__item-desc">{{ item.description }}</p>
-      <span class="menu__item-price">{{ item.price }}</span>
+  <div class="menu__header-container">
+    <div class="menu__header-titles">
+      <h2 class="menu__title">SELECCIÓN DE AUTOR</h2>
+      <h3 class="menu__subtitle">Nuestra Carta</h3>
+    </div>
+    <div class="menu__header-text">
+      <p>Una exploración por los sabores más emblemáticos de nuestra Dark Kitchen, diseñados para el paladar más exigente.</p>
     </div>
   </div>
-  <button class="menu__btn">Ver Carta Completa</button>
+
+  <div class="menu__grid">
+    <div class="menu__category" *ngFor="let cat of menuCategories">
+      <!-- NOTA: Las URLs de estas imágenes se cambian dentro del archivo landing-page.ts en la propiedad 'imgUrl' de cada categoría -->
+      <img [src]="cat.imgUrl" [alt]="cat.categoryName" class="menu__category-img">
+      <h4 class="menu__category-title">{{ cat.categoryName }}</h4>
+      <hr class="menu__divider">
+      
+      <div class="menu__item" *ngFor="let item of cat.items">
+        <div class="menu__item-header">
+          <span class="menu__item-name">{{ item.title }}</span>
+          <span class="menu__item-price">{{ item.price }}</span>
+        </div>
+        <p class="menu__item-desc">{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+  <button class="menu__btn">VER CARTA COMPLETA</button>
 </section>
 
-<section id="delivery" class="location">
-  <div class="location__map">
-    <img src="../../assets/bg-illari-nikkei.png" alt="Map" class="about__image">
-  </div>
+<section id="location" class="location">
   <div class="location__info">
-    <h3 class="location__header">Ubicación</h3>
-    <p>Calle San Juan Bosco, 123</p>
-    <h3 class="location__header">Horarios de Atención</h3>
-    <p>Lunes a Domingo 12pm - 11pm</p>
+    <h2 class="location__title">VISÍTANOS</h2>
+    <h3 class="location__subtitle">Nuestra Ubicación</h3>
+
+    <div class="location__block">
+      <div class="location__icon">
+        <!-- Reemplazo de SVG por un icono simple para ubicación, puedes cambiarlo por FontAwesome u otro SVG si usas en el proyecto -->
+        <span style="font-size: 1.5rem; color: #c00000;">📍</span>
+      </div>
+      <div class="location__details">
+        <h4>Dark Kitchen San Isidro</h4>
+        <p>Calle Las Orquídeas 455, Lima, Perú</p>
+        <span class="location__note">Solo Take-away y Delivery</span>
+      </div>
+    </div>
+
+    <div class="location__block">
+      <div class="location__icon">
+        <span style="font-size: 1.5rem; color: #c00000;">🕒</span>
+      </div>
+      <div class="location__details">
+        <h4>Horarios de Atención</h4>
+        <p>Lun - Sáb: 12:30 PM - 10:30 PM<br>Dom: 12:30 PM - 5:00 PM</p>
+      </div>
+    </div>
+
+    <div class="location__block">
+      <div class="location__icon">
+        <span style="font-size: 1.5rem; color: #c00000;">🛵</span>
+      </div>
+      <div class="location__details">
+        <h4>Delivery & Pick-up</h4>
+        <p>Realiza tu pedido vía WhatsApp para una atención personalizada.</p>
+        <a href="#" class="location__cta">ORDENAR AHORA</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="location__visual">
+    <div class="location__map-container">
+      <!-- CAMBIAR IMAGEN DEL MAPA AQUÍ -->
+      <img src="assets/bg-illari-nikkei.png" alt="Mapa de Ubicación" class="location__map">
+    </div>
   </div>
 </section>
 
 <footer class="footer">
-  <div class="footer__logo">
-    <img src="../../../assets/logo-hero-illari-nikkei-removebg-preview.png" alt="Illari Nikkei Logo" height="40">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <img src="assets/logo-hero-illari-nikkei-removebg-preview.png" alt="Illari Nikkei Logo" class="footer__logo">
+    </div>
+    
+    <div class="footer__links-col">
+      <h4>Acerca de Illari Nikkei</h4>
+      <ul>
+        <li><a (click)="scrollTo('about')" style="cursor: pointer;">Quiénes Somos</a></li>
+        <li><a (click)="scrollTo('chef')" style="cursor: pointer;">El chef de Illari</a></li>
+        <li><a (click)="scrollTo('menu')" style="cursor: pointer;">Nuestra comida</a></li>
+        <li><a (click)="scrollTo('location')" style="cursor: pointer;">Atendemos</a></li>
+        <li><a (click)="scrollTo('location')" style="cursor: pointer;">Ubícanos</a></li>
+        <li><a style="cursor: pointer;">Trabaja con nosotros</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__links-col">
+      <h4>Más información</h4>
+      <div class="footer__claims">
+        <span style="font-size: 2rem;">📖</span>
+        <a href="#">Libro de reclamaciones</a>
+      </div>
+    </div>
+
+    <div class="footer__social-actions">
+      <div class="footer__socials">
+        <!-- Reemplazar con iconos SVG/FontAwesome reales -->
+        <a href="#" class="footer__social-btn">FB</a>
+        <a href="#" class="footer__social-btn">IG</a>
+      </div>
+      <div class="footer__action-btns">
+        <button class="footer__pill-btn" (click)="scrollTo('hero')">Reservas</button>
+        <button class="footer__pill-btn" (click)="scrollTo('location')">Delivery</button>
+        <button class="footer__pill-btn" (click)="scrollTo('menu')">Carta</button>
+        <button class="footer__pill-btn">Trabaja con nosotros</button>
+      </div>
+    </div>
   </div>
-  <div class="footer__text">
-    <p>© 2023 ILLARI NIKKEI. TODOS LOS DERECHOS RESERVADOS.</p>
+
+  <div class="footer__bottom">
+    <p>Restaurante Illari Nikkei 2026. Todos los derechos reservados</p>
+    <p class="footer__dev">Desarrollado por <a href="https://github.com/izpodev" target="_blank" rel="noopener noreferrer">izpodev</a> 2026</p>
   </div>
 </footer>
