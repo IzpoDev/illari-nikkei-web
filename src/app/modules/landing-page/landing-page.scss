@@ -1,0 +1,177 @@
+@use "sass:color";
+
+$black: #000;
+$red: #c00000; // Adjusted based on standard red, should match logo
+$white: #fff;
+$silver: #C0C0C0;
+$font-serif: 'Times New Roman', serif;
+$font-sans: 'Arial', sans-serif;
+
+:host {
+  display: block;
+  background-color: $black;
+  color: $silver;
+  font-family: $font-sans;
+  background-image: url('../../../assets/logo-hero-illari-nikkei-removebg-preview.png');
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(5px);
+  
+  &--visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  &__logo img { height: 40px; }
+  &__nav {
+    display: flex;
+    gap: 1rem;
+  }
+  &__nav a {
+    color: $white;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+    &:hover { color: $silver; }
+  }
+}
+
+.hero {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../../assets/bg-illari-nikkei.png') no-repeat center center;
+  background-size: cover;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__main-logo {
+    width: 100%;
+    max-width: 350px;
+    height: 15vw;
+    min-height: 120px;
+    margin-bottom: -2rem;
+    /* Cambiar imagen de la seccion principal */
+    background-image: url('../../../assets/logo-hero-illari-nikkei-removebg-preview.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__btn {
+    background: rgba(15, 15, 15, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: $white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover { 
+      background: rgba(255, 255, 255, 0.85); 
+      color: $black; 
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.about, .menu, .location, .footer {
+  width: 50vw;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer {
+  min-height: auto;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  &__title { color: $white; }
+  &__quote { color: $red; font-style: italic; font-family: $font-serif; font-size: 1.5rem; }
+  &__image { width: 100%;
+             border-radius: 8px; 
+             background-image: url('../../../assets/logo-hero-illari-nikkei-removebg-preview.png'); 
+             background-size: contain; 
+             background-repeat: no-repeat; }
+}
+
+.menu {
+  &__title { color: $white; text-align: center; margin-bottom: 2rem; }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  &__item {
+    background: rgba(255,255,255,0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  &__img { width: 100%; border-radius: 8px; }
+  &__item-title { color: $white; }
+  &__item-price { color: $red; font-weight: bold; }
+  &__btn {
+    display: block;
+    margin: 2rem auto 0;
+    background: transparent;
+    border: 1px solid $red;
+    color: $red;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    &:hover { background: $red; color: $white; }
+  }
+}
+
+.location {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  &__header { color: $red; }
+  img { max-width: 100%; }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
