@@ -1,1 +1,40 @@
-<p>menu works!</p>
+<div class="menu-page">
+  <header class="header">
+    <div class="header__logo" (click)="goBack()" style="cursor: pointer;">
+      <img src="assets/logo-illari-nikkei-removebg-preview.png" alt="Illari Nikkei Logo">
+    </div>
+    <nav class="header__nav">
+      <a (click)="goBack()" style="cursor: pointer;">Volver al Inicio</a>
+    </nav>
+  </header>
+
+  <main class="menu-content">
+    <div class="menu-header">
+      <h1 class="menu-title">CARTA ILLARI NIKKEI</h1>
+      <p class="menu-subtitle">Nuestra propuesta gastronómica completa</p>
+    </div>
+
+    <!-- Categorías -->
+    <div class="menu-section" *ngFor="let category of fullMenu">
+      <h2 class="section-title">{{ category.name }}</h2>
+      <hr class="section-divider">
+      
+      <div class="cards-grid">
+        <div class="card" *ngFor="let item of category.items">
+          <div class="card-image" [style.backgroundImage]="'url(' + item.imgUrl + ')' "></div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3 class="card-title">{{ item.title }}</h3>
+              <span class="card-price">{{ item.price }}</span>
+            </div>
+            <p class="card-description">{{ item.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Restaurante Illari Nikkei 2026. Todos los derechos reservados</p>
+  </footer>
+</div>

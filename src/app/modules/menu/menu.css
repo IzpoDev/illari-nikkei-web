@@ -1,0 +1,166 @@
+.menu-page {
+  background-color: #000;
+  color: #C0C0C0;
+  font-family: 'Arial', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(5px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header__logo img {
+  height: 40px;
+}
+
+.header__nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.header__nav a:hover {
+  color: #c00000;
+}
+
+.menu-content {
+  padding: 4rem 10vw;
+  flex: 1;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.menu-title {
+  color: #c00000;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+}
+
+.menu-subtitle {
+  color: #C0C0C0;
+  font-family: 'Times New Roman', serif;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.menu-section {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  color: #c00000;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid rgba(192, 0, 0, 0.25);
+  margin-bottom: 2rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background-color: #111;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(192, 0, 0, 0.25);
+  border-color: rgba(192, 0, 0, 0.4);
+}
+
+.card-image {
+  width: 100%;
+  min-height: 180px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.card-title {
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.card-description {
+  color: #888;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  font-family: 'Times New Roman', serif;
+}
+
+.card-price {
+  color: #c00000;
+  font-weight: bold;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #050505;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .menu-content {
+    padding: 2rem 5vw;
+  }
+  .menu-title {
+    font-size: 2rem;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

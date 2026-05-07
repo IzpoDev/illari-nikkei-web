@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface MenuCategoryItem {
   title: string;
@@ -24,6 +25,13 @@ export class LandingPage {
   isNavVisible = false;
   isAboutVisible = false;
   isChefVisible = false;
+
+  constructor(private router: Router) {}
+
+  goToMenu() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.router.navigate(['/menu']);
+  }
 
   scrollTo(id: string) {
     const element = document.getElementById(id);
